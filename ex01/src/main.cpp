@@ -1,8 +1,6 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 #include <limits>
-#include <thread>
-#include <chrono>
 #include <cstdlib>
 #include <sstream>
 
@@ -85,7 +83,7 @@ int main(int argc, char **argv) {
                 std::cout << "Enter the index of the entry to display: ";
                 std::getline(std::cin, indexInput);
                 try {
-                    index = std::stringToInt(indexInput);
+                    index = stringToInt(indexInput);
                     if (index >= 0) {
                         phonebook.displayContact(index);
                     } else
@@ -106,7 +104,7 @@ int main(int argc, char **argv) {
     }
     std::cout << "Going to exit the program!" << std::endl;
     //std::this_thread::sleep_for(std::chrono::seconds(1));
-    //system("clear");
+    system("clear");
     std::cout << "Exited the program sucessfully!" << std::endl;
     return (0);
 }
