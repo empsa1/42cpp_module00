@@ -28,6 +28,9 @@ int main(int argc, char **argv) {
     while (true) {
         std::cout << "Enter a command: ADD, SEARCH, EXIT: ";
         std::getline(std::cin, command);
+        if (std::cin.eof()) {
+            exit(1);
+        }
         if (command == "ADD") {
             std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
             std::cout << "Enter first name: ";
