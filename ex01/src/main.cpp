@@ -3,6 +3,9 @@
 #include <limits>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
+#include <sstream>
+
 
 int validNumber(std::string n) {
     int i = -1;
@@ -13,6 +16,15 @@ int validNumber(std::string n) {
             return 0;
     }
     return 1;
+}
+
+int stringToInt(const std::string& str) {
+    std::istringstream iss(str);
+    int result;
+    if (!(iss >> result)) {
+        result = 0; // Default value or error handling for conversion failure
+    }
+    return result;
 }
 
 int main(int argc, char **argv) {
@@ -73,7 +85,7 @@ int main(int argc, char **argv) {
                 std::cout << "Enter the index of the entry to display: ";
                 std::getline(std::cin, indexInput);
                 try {
-                    index = std::stoi(indexInput);
+                    index = std::stringToInt(indexInput);
                     if (index >= 0) {
                         phonebook.displayContact(index);
                     } else
@@ -93,8 +105,8 @@ int main(int argc, char **argv) {
         }
     }
     std::cout << "Going to exit the program!" << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    system("clear");
+    //std::this_thread::sleep_for(std::chrono::seconds(1));
+    //system("clear");
     std::cout << "Exited the program sucessfully!" << std::endl;
     return (0);
 }

@@ -44,7 +44,7 @@ void PhoneBook::listContacts() const {
 
 void PhoneBook::displayContact(int index) const {
     if (index >= 0 && index < numContacts) {
-        system("clear");
+        //system("clear");
         std::cout << std::endl <<  "Here is the contact you asked for:" << std::endl << std::endl;
         std::cout << "First Name: " << contacts[index].getFirstName() << std::endl;
         std::cout << "Last Name: " << contacts[index].getLastName() << std::endl;
