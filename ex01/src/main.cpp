@@ -20,7 +20,7 @@ int stringToInt(const std::string& str) {
     std::istringstream iss(str);
     int result;
     if (!(iss >> result)) {
-        result = 0; // Default value or error handling for conversion failure
+        result = 0;
     }
     return result;
 }
@@ -103,7 +103,6 @@ int main(int argc, char **argv) {
         }
     }
     std::cout << "Going to exit the program!" << std::endl;
-    //std::this_thread::sleep_for(std::chrono::seconds(1));
     system("clear");
     std::cout << "Exited the program sucessfully!" << std::endl;
     return (0);

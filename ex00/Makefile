@@ -4,7 +4,7 @@ CXX98FLAGS = -std=c++98
 SRC_DIR = src
 INC_DIR = include
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-EXECUTABLE = Phonebook
+EXECUTABLE = Megaphone
 MAIN = main.cpp
 
 INCLUDE = -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11
