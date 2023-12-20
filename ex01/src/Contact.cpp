@@ -1,4 +1,4 @@
-#include "Contact.hpp"
+#include "../include/Contact.hpp"
 #include <iostream>
 
 Contact::Contact() : firstName(""), phoneNumber("") {}

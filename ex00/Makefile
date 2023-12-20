@@ -1,26 +1,23 @@
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-CXX98FLAGS = -std=c++98
-SRC_DIR = src
-INC_DIR = include
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-EXECUTABLE = Megaphone
-MAIN = main.cpp
 
-INCLUDE = -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11
-LIB_PATH = -L /usr/lib/gcc/x86_64-linux-gnu/11
+SRC = src/megaphone.cpp
+OBJ = $(SRC:.cpp=.o)
+CC = g++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-all: $(EXECUTABLE)
+NAME = Megaphone
 
-$(EXECUTABLE): $(SRCS)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -I$(INC_DIR) $^ -o $@ $(LIB_PATH)
+all: $(NAME)
 
-.PHONY: clean
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
 clean:
-	rm -rf $(EXECUTABLE)
+	$(RM) $(OBJ)
 
-.PHONY: re
-re: clean all
-
-.PHONY: fclean
 fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re
