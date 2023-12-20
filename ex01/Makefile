@@ -1,9 +1,9 @@
 
-SRC = src/main.cpp src/Contact.cpp src/PhoneBook.cpp include/Contact.hpp include/PhoneBook.hpp
+SRC = src/main.cpp src/Contact.cpp src/PhoneBook.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = g++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = Phonebook
 
@@ -18,6 +18,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

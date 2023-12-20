@@ -16,6 +16,16 @@ int validNumber(std::string n) {
     return 1;
 }
 
+std::string removeSpaces(const std::string& str) {
+    std::string result;
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] != ' ') {
+            result += str[i];
+        }
+    }
+    return result;
+}
+
 int stringToInt(const std::string& str) {
     std::istringstream iss(str);
     int result;
@@ -28,6 +38,7 @@ int stringToInt(const std::string& str) {
 int main(int argc, char **argv) {
     PhoneBook phonebook;
     std::string command;
+    int flag = 0;
     if (argc != 1 || argv[1] != NULL) {
         std::cout << "Invalid usage of the program! Usage: /phonebook" << std::endl;
         return 1;
@@ -41,39 +52,49 @@ int main(int argc, char **argv) {
         if (std::cin.eof()) {
             exit(1);
         }
+        command = removeSpaces(command);
         if (command == "ADD") {
             std::string firstName, lastName, nickname, phoneNumber, darkestSecret;
             std::cout << "Enter first name: ";
             std::getline(std::cin, firstName);
             if (firstName.length() == 0) {
                 std::cout << "Invalid input." << std::endl;
-                break;
+                flag = 1;
             }
-            std::cout << "Enter last name: ";
-            std::getline(std::cin, lastName);
-            if (lastName.length() == 0) {
-                std::cout << "Invalid input." << std::endl;
-                break;
+            if (flag == 0) {
+                std::cout << "Enter last name: ";
+                std::getline(std::cin, lastName);
+                if (lastName.length() == 0) {
+                    std::cout << "Invalid input." << std::endl;
+                    flag = 1;
+                }
             }
-            std::cout << "Enter nickname: ";
-            std::getline(std::cin, nickname);
-            if (nickname.length() == 0) {
-                std::cout << "Invalid input." << std::endl;
-                break;
+            if (flag == 0) {
+                std::cout << "Enter nickname: ";
+                std::getline(std::cin, nickname);
+                if (nickname.length() == 0) {
+                    std::cout << "Invalid input." << std::endl;
+                    flag = 1;
+                }
             }
-            std::cout << "Enter your phone number: ";
-            std::cin >> phoneNumber;
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            if (flag == 0) {
+                std::cout << "Enter your phone number: ";
+                std::cin >> phoneNumber;
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 if (!validNumber(phoneNumber) || phoneNumber.length() != 9) {
                     std::cout << "Invalid phone number." << std::endl;
-                    break;
+                    flag = 1;
                 }
+            }
+            if (flag == 0) {
                 std::cout << "Enter your darkest secret: ";
                 std::getline(std::cin, darkestSecret);
                 if (darkestSecret.length() == 0) {
                     std::cout << "Invalid input." << std::endl;
-                    break;
+                    flag = 1;
                 }
+            }
+            if (flag == 0)
                 phonebook.addContact(firstName, lastName, nickname, phoneNumber, darkestSecret);
         } else if (command == "SEARCH") {
             if (phonebook.getNumContacts() > 0) {
